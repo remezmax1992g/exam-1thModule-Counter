@@ -1,45 +1,60 @@
-.App {
+.App{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    background-color: cadetblue;
+    margin: 100px;
+    background-color: darkslategrey;
+}
+
+.Counter, .Setting{
+    background-color: darkslategrey;
     width: 260px;
-    border: 6px solid aqua;
+    border: 8px solid aqua;
     padding: 5px;
     border-radius: 5px;
-    margin: 170px auto auto auto;
+    margin: 20px;
 }
 
-.counter {
-    display: block;
-    border-radius: 5px;
+.screen {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
     width: 230px;
-    background-color: aqua;
-    color: grey;
+    height: 150px;
+    background-color: darkslategrey;
+    border: aqua solid 8px;
     margin: 5px auto;
     font-weight: bold;
-    font-size: 90px;
 }
 
-.counterRed {
-    display: block;
-    border-radius: 5px;
-    width: 230px;
-    background-color: aqua;
+.screen .counterRed{
+    margin: 0;
     color: red;
-    margin: 5px auto;
-    font-weight: bold;
-    font-size: 90px;
+    font-size: 100px;
+
+}
+.screen .counter{
+    margin: 0;
+    color: grey;
+    font-size: 100px;
+}
+.screen-input{
+    color:aqua;
+    font-size: 20px;
 }
 
 .button {
-    border: aqua 4px solid;
+    border: aqua 8px solid;
     border-radius: 10px;
     padding: 10px;
     width: 200px;
-    background-color: cadetblue;
+    background-color: darkslategrey;
     margin: 15px auto;
 }
-
-.buttonInc{
+.button-common{
     background-color: aqua;
     outline: none;
     color: black;
@@ -49,37 +64,35 @@
     border-radius: 5px;
     border-color: aqua;
 }
-
-.buttonInc:disabled{
+.button-common:disabled {
     background-color: grey;
-    outline: none;
-    color: black;
-    font-weight: bold;
-    width: 90px;
-    margin: 5px;
-    border-radius: 5px;
     border-color: grey;
 }
 
-.buttonReset {
-    background-color: aqua;
+.Input-default {
     outline: none;
-    color: black;
-    font-weight: bold;
-    width: 90px;
-    margin: 5px;
-    border-radius: 5px;
-    border-color: aqua;
+    color: grey;
+    background: darkslategrey;
+    width: 60px;
+    font-size: 20px;
+    margin-left: 30px;
+    border: aqua 2px solid;
+    text-align: center;
 }
-
-.buttonReset:disabled {
-    background-color: grey;
+.error-text{
+    color: red;
+    font-size: 30px;
+}
+.error-input{
     outline: none;
-    color: black;
-    font-weight: bold;
-    width: 90px;
-    margin: 5px;
-    border-radius: 5px;
-    border-color: grey;
+    color: grey;
+    background: rgba(240, 128, 128, 1);
+    width: 60px;
+    font-size: 20px;
+    margin-left: 30px;
+    border: red 3px solid;
+    text-align: center;
 }
-
+.text-alarm{
+    font-size: 20px;
+}

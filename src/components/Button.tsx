@@ -7,12 +7,12 @@ type ButtonPropsType = {
     className: string
     disabled?: boolean
     //function
-    callBAckOnClick: () => void
+    onClickCallBack: () => void
 }
 const Button: React.FC<ButtonPropsType> = (props) => {
     //function
     const onClickHandler = () => {
-        props.callBAckOnClick()
+        props.onClickCallBack()
     }
     //interface
     return (
