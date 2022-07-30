@@ -3,18 +3,20 @@ import React, {ChangeEvent} from 'react';
 type InputType = {
     error?: boolean,
     onChangeCallBack: (setPoint: number) => void
+    startValue: number
 }
 
 const Input = (props: InputType) => {
 
-        const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
-            let setPoint = Number(e.currentTarget.value)
-            props.onChangeCallBack(setPoint)
-        }
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.onChangeCallBack(e.currentTarget.valueAsNumber)
+    }
 
     return (
-        <span className={"Input"}>
-            <input className={!props.error ? "Input-default" : "error-input"} type={"number"} onChange={onChangeHandler}/>
+        <span>
+            <input className={!props.error ? "input-default" : "error-input"}
+                   type={"number"} value={props.startValue}
+                   onChange={onChangeHandler}/>
         </span>
     );
 };

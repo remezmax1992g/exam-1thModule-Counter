@@ -4,7 +4,6 @@ import "./../App.css";
 type ButtonPropsType = {
     //data
     nameButton: string,
-    className: string
     disabled?: boolean
     //function
     onClickCallBack: () => void
@@ -17,7 +16,9 @@ const Button: React.FC<ButtonPropsType> = (props) => {
     //interface
     return (
         <span>
-            <button className={props.className} onClick={onClickHandler} disabled={props.disabled}>{props.nameButton}</button>
+            <button className="button-common"
+                    onClick={onClickHandler}
+                    disabled={props.disabled}>{props.nameButton}</button>
         </span>
     );
 };
