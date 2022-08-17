@@ -1,12 +1,11 @@
 import React from 'react';
-import Input from "./Input";
-import Button from "./Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 type SettingType = {
     maxNumber: number
     minNumber: number
-    errorForMax: boolean
-    errorForMin: boolean
+    error: boolean
     status: boolean
     onChangeMaxCallBack: (setPoint: number) => void
     onChangeMinCallBack: (setPoint: number) => void
@@ -21,19 +20,19 @@ const Setting = (props: SettingType) => {
                     <span>Max value:</span>
                     <Input onChangeCallBack={props.onChangeMaxCallBack}
                            startValue={props.maxNumber}
-                           error={props.errorForMax}/>
+                           error={props.error}/>
                 </div>
                 <div className={"screen-input"}>
                     <span>Start Value:</span>
                     <Input onChangeCallBack={props.onChangeMinCallBack}
                            startValue={props.minNumber}
-                           error={props.errorForMin}/>
+                           error={props.error}/>
                 </div>
             </div>
             <div className={"button"}>
                 <Button nameButton={"set"}
                         onClickCallBack={props.onClickCallBack}
-                        disabled={props.errorForMin || props.errorForMax || !props.status}/>
+                        disabled={props.error || !props.status}/>
             </div>
         </div>
     );

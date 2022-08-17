@@ -1,24 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Counter from "./components/Counter";
-import Setting from "./components/Setting";
+import CounterWithSetting from "./CounterWithSetting/CounterWithSetting";
+import CounterWithSettingUpdate from "./CounterWithSettingUpdate/CounterWithSettingUpdate";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
     //data
-    let minValue = 0;
-    let maxValue = 5;
+    const minValue = 0;
+    const maxValue = 5;
     //state
     let [minNumber, setMinNumber] = useState<number>(minValue);
     let [maxNumber, setMaxNumber] = useState<number>(maxValue);
     let [number, setNumber] = useState<number>(minNumber)
-    let [errorForMin, setErrorForMin] = useState<boolean>(false)
-    let [errorForMax, setErrorForMax] = useState<boolean>(false)
+    let [error, setError] = useState<boolean>(false)
     let [status, setStatus] = useState<boolean>(false)
 
     //minLocalStorage
-    useEffect(() => {
-        localStorage.setItem("minNumber", JSON.stringify(minNumber))
-    }, [minNumber])
     useEffect(() => {
         let numberAsString = localStorage.getItem("minNumber")
         if (numberAsString) {
@@ -26,10 +23,10 @@ function App() {
             setMinNumber(newMinNumber)
         }
     }, [])
-    //maxLocalStorage
     useEffect(() => {
-        localStorage.setItem("maxNumber", JSON.stringify(maxNumber))
-    }, [maxNumber])
+        localStorage.setItem("minNumber", JSON.stringify(minNumber))
+    }, [minNumber])
+    //maxLocalStorage
     useEffect(() => {
         let numberAsString = localStorage.getItem("maxNumber")
         if (numberAsString) {
@@ -37,12 +34,27 @@ function App() {
             setMaxNumber(newMaxNumber)
         }
     }, [])
+    useEffect(() => {
+        localStorage.setItem("maxNumber", JSON.stringify(maxNumber))
+    }, [maxNumber])
     //function
     const onClickInc = () => {
         if (number < maxNumber) {
-            setNumber(++number)
+            setNumber(number + 1)
         }
     }
+    //numberLocalStorage
+    useEffect(() => {
+        let numberAsString = localStorage.getItem("number")
+        if (numberAsString) {
+            let newNumber = JSON.parse(numberAsString)
+            setNumber(newNumber)
+        }
+    }, [])
+    useEffect(() => {
+        localStorage.setItem("number", JSON.stringify(number))
+    }, [number])
+
     const onClickReset = () => {
         setNumber(minNumber)
     }
@@ -50,22 +62,19 @@ function App() {
         setStatus(true)
         setMaxNumber(value)
         if (value > minNumber) {
-            errorForMax && setErrorForMax(false)
-            errorForMin && setErrorForMin(false)
+            error && setError(false)
+
         } else {
-            setErrorForMax(true)
-            setErrorForMin(true)
+            setError(true)
         }
     }
     const onChangeMinNumber = (value: number) => {
         setStatus(true)
         setMinNumber(value)
         if (value >= 0 && value < maxNumber) {
-            errorForMin && setErrorForMin(false)
-            errorForMax && setErrorForMax(false)
+            error && setError(false)
         } else {
-            setErrorForMin(true)
-            setErrorForMax(true)
+            setError(true)
         }
     }
     const onClickSet = () => {
@@ -75,28 +84,30 @@ function App() {
     }
     //UI
     return (
-        <div className="App">
-            <span className={"Setting"}>
-                <Setting maxNumber={maxNumber}
-                         minNumber={minNumber}
-                         errorForMax={errorForMax}
-                         errorForMin={errorForMin}
-                         status={status}
-                         onChangeMaxCallBack={onChangeMaxNumber}
-                         onChangeMinCallBack={onChangeMinNumber}
-                         onClickCallBack={onClickSet}/>
+        <BrowserRouter>
+            <span className="App">
+            {/*<CounterWithSetting number={number}
+                                maxNumber={maxNumber}
+                                minNumber={minNumber}
+                                error={error}
+                                status={status}
+                                onClickInc={onClickInc}
+                                onClickReset={onClickReset}
+                                onChangeMaxCallBack={onChangeMaxNumber}
+                                onChangeMinCallBack={onChangeMinNumber}
+                                onClickCallBack={onClickSet}/>*/}
+                <CounterWithSettingUpdate number={number}
+                                          maxNumber={maxNumber}
+                                          minNumber={minNumber}
+                                          error={error}
+                                          status={status}
+                                          onClickInc={onClickInc}
+                                          onClickReset={onClickReset}
+                                          onChangeMaxCallBack={onChangeMaxNumber}
+                                          onChangeMinCallBack={onChangeMinNumber}
+                                          onClickCallBack={onClickSet}/>
             </span>
-            <span className={"Counter"}>
-                <Counter number={number}
-                         maxNumber={maxNumber}
-                         minNumber={minNumber}
-                         status={status}
-                         errorForMax={errorForMax}
-                         errorForMin={errorForMin}
-                         onClickInc={onClickInc}
-                         onClickReset={onClickReset}/>
-            </span>
-        </div>
+        </BrowserRouter>
     );
 }
 

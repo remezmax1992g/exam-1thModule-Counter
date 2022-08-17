@@ -1,20 +1,19 @@
-import Button from "./Button";
-import '../App.css';
+import Button from "../../components/Button";
+import {NavLink} from "react-router-dom";
 
 type CounterPropsType = {
     //value
     number: number
     maxNumber: number
     minNumber: number
-    errorForMax: boolean
-    errorForMin: boolean
+    error: boolean
     status: boolean
     //function
     onClickInc: () => void
     onClickReset: () => void
 }
 
-const Counter = (props: CounterPropsType) => {
+const CounterUpdate = (props: CounterPropsType) => {
     //data
     let textAlarm = "enter values and press 'set'"
     //function
@@ -28,7 +27,7 @@ const Counter = (props: CounterPropsType) => {
     return (
         <div className={"counter-main"}>
             <div className={"screen"}>
-                {!props.errorForMin && !props.errorForMax
+                {!props.error
                     ? !props.status
                         ? <span
                             className={props.number === props.maxNumber ? "counterRed" : "counter"}>{props.number}</span>
@@ -38,14 +37,15 @@ const Counter = (props: CounterPropsType) => {
             <div className={"button"}>
                 <Button nameButton={"increment"}
                         onClickCallBack={OnClickInc}
-                        disabled={props.number === props.maxNumber || props.errorForMin || props.errorForMax || props.status}/>
+                        disabled={props.number === props.maxNumber || props.error || props.status}/>
                 <Button nameButton={"reset"}
                         onClickCallBack={OnClickReset}
-                        disabled={props.number === props.minNumber || props.errorForMin || props.errorForMax || props.status}/>
+                        disabled={props.number === props.minNumber || props.error || props.status}/>
+                <NavLink to={"/Setting"}><Button nameButton={"set"}/></NavLink>
             </div>
         </div>
     );
 };
 
-export default Counter;
+export default CounterUpdate;
 
