@@ -1,5 +1,6 @@
-import Button from "../../components/Button";
-import '../../App.css';
+import Button from "../../../components/Button";
+import '../../../App.css';
+import styles from"./Counter.module.css"
 
 type CounterPropsType = {
     //value
@@ -25,16 +26,16 @@ const Counter = (props: CounterPropsType) => {
     }
     //interface
     return (
-        <div className={"counter-main"}>
-            <div className={"screen"}>
+        <span className={"counter-main"}>
+            <div className={styles.screenCounter}>
                 {!props.error
                     ? !props.status
                         ? <span
-                            className={props.number === props.maxNumber ? "counterRed" : "counter"}>{props.number}</span>
-                        : <span className="text-alarm">{textAlarm}</span>
-                    : <span className={"error-text"}>Incorrect value</span>}
+                            className={props.number === props.maxNumber ? styles.counterRed : styles.counterDefault}>{props.number}</span>
+                        : <span className={styles.textAlarm}>{textAlarm}</span>
+                    : <span className={styles.errorTextAlarm}>Incorrect value</span>}
             </div>
-            <div className={"button"}>
+            <div className={styles.screenCounterButton}>
                 <Button nameButton={"increment"}
                         onClickCallBack={OnClickInc}
                         disabled={props.number === props.maxNumber || props.error || props.status}/>
@@ -42,7 +43,7 @@ const Counter = (props: CounterPropsType) => {
                         onClickCallBack={OnClickReset}
                         disabled={props.number === props.minNumber || props.error ||  props.status}/>
             </div>
-        </div>
+        </span>
     );
 };
 

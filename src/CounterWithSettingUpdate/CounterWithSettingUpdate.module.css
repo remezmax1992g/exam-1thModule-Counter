@@ -1,0 +1,9 @@
+.counterUpdate, .settingUpdate {
+    background-color: darkslategrey;
+    width: 450px;
+    height: 370px;
+    border: 8px solid aqua;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 20px;
+}

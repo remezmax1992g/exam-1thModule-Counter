@@ -86,7 +86,7 @@ function App() {
     return (
         <BrowserRouter>
             <span className="App">
-            {/*<CounterWithSetting number={number}
+            <CounterWithSetting number={number}
                                 maxNumber={maxNumber}
                                 minNumber={minNumber}
                                 error={error}
@@ -95,8 +95,8 @@ function App() {
                                 onClickReset={onClickReset}
                                 onChangeMaxCallBack={onChangeMaxNumber}
                                 onChangeMinCallBack={onChangeMinNumber}
-                                onClickCallBack={onClickSet}/>*/}
-                <CounterWithSettingUpdate number={number}
+                                onClickCallBack={onClickSet}/>
+                {/*<CounterWithSettingUpdate number={number}
                                           maxNumber={maxNumber}
                                           minNumber={minNumber}
                                           error={error}
@@ -105,7 +105,7 @@ function App() {
                                           onClickReset={onClickReset}
                                           onChangeMaxCallBack={onChangeMaxNumber}
                                           onChangeMinCallBack={onChangeMinNumber}
-                                          onClickCallBack={onClickSet}/>
+                                          onClickCallBack={onClickSet}/>*/}
             </span>
         </BrowserRouter>
     );

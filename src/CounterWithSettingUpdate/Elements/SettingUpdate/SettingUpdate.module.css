@@ -1,0 +1,30 @@
+.screenSettingUpdate {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 400px;
+    height: 200px;
+    background-color: darkslategrey;
+    border: aqua solid 8px;
+    margin: 10px auto;
+    font-weight: bold;
+}
+.screenInput{
+    color:aqua;
+    font-size: 30px;
+}
+.screenSettingButton {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: aqua 8px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 380px;
+    height: 60px;
+    background-color: darkslategrey;
+    margin: 40px auto;
+}

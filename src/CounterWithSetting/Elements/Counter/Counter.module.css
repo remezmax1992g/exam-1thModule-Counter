@@ -1,0 +1,40 @@
+.screenCounter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 290px;
+    height: 150px;
+    background-color: darkslategrey;
+    border: aqua solid 8px;
+    margin: 20px auto;
+    font-weight: bold;
+}
+.screenCounter .counterRed{
+    margin: 0;
+    color: red;
+    font-size: 100px;
+
+}
+.screenCounter .counterDefault{
+    margin: 0;
+    color: grey;
+    font-size: 100px;
+}
+.screenCounterButton {
+    border: aqua 8px solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 270px;
+    background-color: darkslategrey;
+    margin: 15px auto;
+}
+.textAlarm{
+    font-size: 22px;
+    color: grey;
+}
+.errorTextAlarm{
+    color: red;
+    font-size: 40px;
+}

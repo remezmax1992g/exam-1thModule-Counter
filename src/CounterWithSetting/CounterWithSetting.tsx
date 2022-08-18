@@ -1,6 +1,7 @@
 import React from 'react';
-import Setting from "./Elements/Setting";
-import Counter from "./Elements/Counter";
+import Setting from "./Elements/Setting/Setting";
+import Counter from "./Elements/Counter/Counter";
+import styles from "./CounterWithSetting.module.css"
 
 type CounterWithSettingType = {
     number: number
@@ -18,8 +19,8 @@ type CounterWithSettingType = {
 
 const CounterWithSetting = (props: CounterWithSettingType) => {
     return (
-        <div>
-            <div className={"Setting"}>
+        <div className={styles.device}>
+            <span className={styles.setting}>
             <Setting maxNumber={props.maxNumber}
                      minNumber={props.minNumber}
                      error={props.error}
@@ -27,8 +28,8 @@ const CounterWithSetting = (props: CounterWithSettingType) => {
                      onChangeMaxCallBack={props.onChangeMaxCallBack}
                      onChangeMinCallBack={props.onChangeMinCallBack}
                      onClickCallBack={props.onClickCallBack}/>
-            </div>
-            <div className={"Counter"}>
+            </span>
+            <span className={styles.counter}>
                 <Counter number={props.number}
                          maxNumber={props.maxNumber}
                          minNumber={props.minNumber}
@@ -36,7 +37,7 @@ const CounterWithSetting = (props: CounterWithSettingType) => {
                          error={props.error}
                          onClickInc={props.onClickInc}
                          onClickReset={props.onClickReset}/>
-            </div>
+            </span>
         </div>
     );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
-import SettingUpdate from "./Elements/SettingUpdate";
-import CounterUpdate from "./Elements/CounterUpdate";
+import SettingUpdate from "./Elements/SettingUpdate/SettingUpdate";
+import CounterUpdate from "./Elements/CounterUpdate/CounterUpdate";
 import {Navigate, Route, Routes} from "react-router-dom";
+import styles from "./CounterWithSettingUpdate.module.css"
 
 
 type CounterWithSettingTypeUpdate = {
@@ -20,23 +21,26 @@ type CounterWithSettingTypeUpdate = {
 
 const CounterWithSetting = (props: CounterWithSettingTypeUpdate) => {
     return (
-                    <Routes>
-                    <Route path={"/"} element={<Navigate to={"Counter"}/>}/>
-                    <Route path={"Setting"} element={<div className={"/Setting"}><SettingUpdate maxNumber={props.maxNumber}
-                                                                    minNumber={props.minNumber}
-                                                                    error={props.error}
-                                                                    status={props.status}
-                                                                    onChangeMaxCallBack={props.onChangeMaxCallBack}
-                                                                    onChangeMinCallBack={props.onChangeMinCallBack}
-                                                                                               onClickCallBack={props.onClickCallBack}/></div>}/>
-                    <Route path={"Counter"} element={ <div className={"/Counter"}><CounterUpdate number={props.number}
-                                                                    maxNumber={props.maxNumber}
-                                                                    minNumber={props.minNumber}
-                                                                    status={props.status}
-                                                                    error={props.error}
-                                                                    onClickInc={props.onClickInc}
-                                                                                                onClickReset={props.onClickReset}/></div>}/>
-                </Routes>
+        <Routes>
+            <Route path={"/"} element={<Navigate to={"Counter"}/>}/>
+            <Route path={"Setting"}
+                   element={<div className={styles.settingUpdate}><SettingUpdate maxNumber={props.maxNumber}
+                                                                                 minNumber={props.minNumber}
+                                                                                 error={props.error}
+                                                                                 status={props.status}
+                                                                                 onChangeMaxCallBack={props.onChangeMaxCallBack}
+                                                                                 onChangeMinCallBack={props.onChangeMinCallBack}
+                                                                                 onClickCallBack={props.onClickCallBack}/>
+                   </div>}/>
+            <Route path={"Counter"} element={<div className={styles.counterUpdate}><CounterUpdate number={props.number}
+                                                                                                  maxNumber={props.maxNumber}
+                                                                                                  minNumber={props.minNumber}
+                                                                                                  status={props.status}
+                                                                                                  error={props.error}
+                                                                                                  onClickInc={props.onClickInc}
+                                                                                                  onClickReset={props.onClickReset}/>
+            </div>}/>
+        </Routes>
     );
 };
 
