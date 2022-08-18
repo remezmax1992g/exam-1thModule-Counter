@@ -60,7 +60,7 @@ export const counterReducer = (state: StoreForCounterType = initialStoreForCount
         case SET_VALUE:
             return {...state, currentValue: state.minStartedValue, status: false}
         default:
-            throw new Error("Action type is undefined")
+            return state
     }
 }
 

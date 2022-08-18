@@ -1,20 +1,10 @@
 import Button from "../../../components/Button";
 import '../../../App.css';
 import styles from"./Counter.module.css"
+import {CounterType} from "./CounterContainer";
 
-type CounterPropsType = {
-    //value
-    number: number
-    maxNumber: number
-    minNumber: number
-    error: boolean
-    status: boolean
-    //function
-    onClickInc: () => void
-    onClickReset: () => void
-}
 
-const Counter = (props: CounterPropsType) => {
+const Counter = (props: CounterType) => {
     //data
     let textAlarm = "enter values and press 'set'"
     //function
@@ -28,20 +18,20 @@ const Counter = (props: CounterPropsType) => {
     return (
         <span className={"counter-main"}>
             <div className={styles.screenCounter}>
-                {!props.error
-                    ? !props.status
+                {!props.state.error
+                    ? !props.state.status
                         ? <span
-                            className={props.number === props.maxNumber ? styles.counterRed : styles.counterDefault}>{props.number}</span>
+                            className={props.state.currentValue === props.state.maxStartedValue ? styles.counterRed : styles.counterDefault}>{props.state.currentValue}</span>
                         : <span className={styles.textAlarm}>{textAlarm}</span>
                     : <span className={styles.errorTextAlarm}>Incorrect value</span>}
             </div>
             <div className={styles.screenCounterButton}>
                 <Button nameButton={"increment"}
                         onClickCallBack={OnClickInc}
-                        disabled={props.number === props.maxNumber || props.error || props.status}/>
+                        disabled={props.state.currentValue === props.state.maxStartedValue || props.state.error || props.state.status}/>
                 <Button nameButton={"reset"}
                         onClickCallBack={OnClickReset}
-                        disabled={props.number === props.minNumber || props.error ||  props.status}/>
+                        disabled={props.state.currentValue === props.state.minStartedValue || props.state.error ||  props.state.status}/>
             </div>
         </span>
     );
