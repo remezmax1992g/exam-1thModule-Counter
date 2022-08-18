@@ -1,21 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
 import CounterWithSetting from "./CounterWithSetting/CounterWithSetting";
 import CounterWithSettingUpdate from "./CounterWithSettingUpdate/CounterWithSettingUpdate";
 import {BrowserRouter} from "react-router-dom";
+import {
+    changeMaxValueActionCreator, changeMinValueActionCreator,
+    counterReducer,
+    incrementValueActionCreator,
+    resetValueActionCreator, setValueActionCreator,
+    StoreForCounterType
+} from "./state/reducers/counter-reducer";
 
 function App() {
     //data
-    const minValue = 0;
-    const maxValue = 5;
+    let storeForCounter: StoreForCounterType = {
+        minStartedValue: 0,
+        maxStartedValue: 5,
+        currentValue: 0,
+        error: false,
+        status: false
+    }
     //state
-    let [minNumber, setMinNumber] = useState<number>(minValue);
-    let [maxNumber, setMaxNumber] = useState<number>(maxValue);
-    let [number, setNumber] = useState<number>(minNumber)
-    let [error, setError] = useState<boolean>(false)
-    let [status, setStatus] = useState<boolean>(false)
-
-    //minLocalStorage
+    let [storeCounter, storeCounterDispatch] = useReducer(counterReducer, storeForCounter)
+    /*//minLocalStorage
     useEffect(() => {
         let numberAsString = localStorage.getItem("minNumber")
         if (numberAsString) {
@@ -37,12 +44,6 @@ function App() {
     useEffect(() => {
         localStorage.setItem("maxNumber", JSON.stringify(maxNumber))
     }, [maxNumber])
-    //function
-    const onClickInc = () => {
-        if (number < maxNumber) {
-            setNumber(number + 1)
-        }
-    }
     //numberLocalStorage
     useEffect(() => {
         let numberAsString = localStorage.getItem("number")
@@ -53,54 +54,35 @@ function App() {
     }, [])
     useEffect(() => {
         localStorage.setItem("number", JSON.stringify(number))
-    }, [number])
-
+    }, [number])*/
+    //function
+    const onClickInc = () => {
+        storeCounterDispatch(incrementValueActionCreator())
+    }
     const onClickReset = () => {
-        setNumber(minNumber)
+        storeCounterDispatch(resetValueActionCreator())
     }
     const onChangeMaxNumber = (value: number) => {
-        setStatus(true)
-        setMaxNumber(value)
-        if (value > minNumber) {
-            error && setError(false)
-
-        } else {
-            setError(true)
-        }
+        storeCounterDispatch(changeMaxValueActionCreator(value))
     }
     const onChangeMinNumber = (value: number) => {
-        setStatus(true)
-        setMinNumber(value)
-        if (value >= 0 && value < maxNumber) {
-            error && setError(false)
-        } else {
-            setError(true)
-        }
+        storeCounterDispatch(changeMinValueActionCreator(value))
     }
     const onClickSet = () => {
-        setStatus(false)
-        setNumber(minNumber)
+        storeCounterDispatch(setValueActionCreator())
 
     }
     //UI
     return (
         <BrowserRouter>
             <span className="App">
-            <CounterWithSetting number={number}
-                                maxNumber={maxNumber}
-                                minNumber={minNumber}
-                                error={error}
-                                status={status}
+            <CounterWithSetting store={storeCounter}
                                 onClickInc={onClickInc}
                                 onClickReset={onClickReset}
                                 onChangeMaxCallBack={onChangeMaxNumber}
                                 onChangeMinCallBack={onChangeMinNumber}
                                 onClickCallBack={onClickSet}/>
-                {/*<CounterWithSettingUpdate number={number}
-                                          maxNumber={maxNumber}
-                                          minNumber={minNumber}
-                                          error={error}
-                                          status={status}
+                {/*<CounterWithSettingUpdate store={storeCounter}
                                           onClickInc={onClickInc}
                                           onClickReset={onClickReset}
                                           onChangeMaxCallBack={onChangeMaxNumber}
