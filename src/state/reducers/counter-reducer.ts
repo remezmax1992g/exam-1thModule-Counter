@@ -5,11 +5,11 @@ const SET_VALUE = "SET-VALUE"
 const CHANGE_MIN_VALUE = "CHANGE-MIN-VALUE"
 const CHANGE_MAX_VALUE = "CHANGE-MAX-VALUE"
 //ActionType
-type IncrementValueActionCreatorType = ReturnType<typeof incrementValueActionCreator>
-type ResetValueActionCreatorType = ReturnType<typeof resetValueActionCreator>
-type SetValueActionCreatorType = ReturnType<typeof setValueActionCreator>
-type ChangeMinValueActionCreatorType = ReturnType<typeof changeMinValueActionCreator>
-type ChangeMaxValueActionCreatorType = ReturnType<typeof changeMaxValueActionCreator>
+type IncrementValueActionCreatorType = ReturnType<typeof incrementValue>
+type ResetValueActionCreatorType = ReturnType<typeof resetValue>
+type SetValueActionCreatorType = ReturnType<typeof setValue>
+type ChangeMinValueActionCreatorType = ReturnType<typeof changeMinValue>
+type ChangeMaxValueActionCreatorType = ReturnType<typeof changeMaxValue>
 type CommonActionForCounterType =
     IncrementValueActionCreatorType
     | ResetValueActionCreatorType
@@ -65,28 +65,28 @@ export const counterReducer = (state: StoreForCounterType = initialStoreForCount
 }
 
 //actionCreators
-export const incrementValueActionCreator = () => {
+export const incrementValue = () => {
     return {
         type: INCREMENT_VALUE
     } as const
 }
-export const resetValueActionCreator = () => {
+export const resetValue = () => {
     return {
         type: RESET_VALUE
     } as const
 }
-export const setValueActionCreator = () => {
+export const setValue = () => {
     return {
         type: SET_VALUE,
     } as const
 }
-export const changeMinValueActionCreator = (minValue: number) => {
+export const changeMinValue = (minValue: number) => {
     return {
         type: CHANGE_MIN_VALUE,
         payload: {minValue}
     } as const
 }
-export const changeMaxValueActionCreator = (maxValue: number) => {
+export const changeMaxValue = (maxValue: number) => {
     return {
         type: CHANGE_MAX_VALUE,
         payload: {maxValue}

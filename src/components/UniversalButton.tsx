@@ -8,7 +8,7 @@ type ButtonPropsType = {
     //function
     onClickCallBack?: () => void
 }
-const Button: React.FC<ButtonPropsType> = (props) => {
+const UniversalButton: React.FC<ButtonPropsType> = (props) => {
     //function
     const onClickHandler = () => {
         if(props.onClickCallBack){
@@ -25,4 +25,4 @@ const Button: React.FC<ButtonPropsType> = (props) => {
     );
 };
 
-export default Button;
+export default UniversalButton;

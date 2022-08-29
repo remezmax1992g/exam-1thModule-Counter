@@ -1,28 +1,28 @@
-import Button from "../../../components/Button";
 import {NavLink} from "react-router-dom";
 import styles from "./CounterUpdate.module.css"
+import UniversalButton from "../../../components/UniversalButton";
 
-type CounterPropsType = {
+type CounterUpdatePropsType = {
     //value
-    number: number
-    maxNumber: number
-    minNumber: number
+    currentValue: number
+    maxValue: number
+    minValue: number
     error: boolean
     status: boolean
     //function
-    onClickInc: () => void
-    onClickReset: () => void
+    onClickIncCallback: () => void
+    onClickResetCallback: () => void
 }
 
-const CounterUpdate = (props: CounterPropsType) => {
+const CounterUpdate = (props: CounterUpdatePropsType) => {
     //data
     let textAlarm = "enter values and press 'set'"
     //function
     const OnClickInc = () => {
-        props.onClickInc()
+        props.onClickIncCallback()
     }
     const OnClickReset = () => {
-        props.onClickReset()
+        props.onClickResetCallback()
     }
     //interface
     return (
@@ -31,18 +31,18 @@ const CounterUpdate = (props: CounterPropsType) => {
                 {!props.error
                     ? !props.status
                         ? <span
-                            className={props.number === props.maxNumber ? styles.counterRed : styles.counter}>{props.number}</span>
+                            className={props.currentValue === props.maxValue ? styles.counterRed : styles.counter}>{props.currentValue}</span>
                         : <span className={styles.textAlarm}>{textAlarm}</span>
                     : <span className={"error-text"}>Incorrect value</span>}
             </div>
             <div className={styles.screenCounterButton}>
-                <Button nameButton={"increment"}
+                <UniversalButton nameButton={"increment"}
                         onClickCallBack={OnClickInc}
-                        disabled={props.number === props.maxNumber || props.error || props.status}/>
-                <NavLink to={"/Setting"}><Button nameButton={"set"}/></NavLink>
-                <Button nameButton={"reset"}
+                        disabled={props.currentValue === props.maxValue || props.error || props.status}/>
+                <NavLink to={"/Setting"}><UniversalButton nameButton={"set"}/></NavLink>
+                <UniversalButton nameButton={"reset"}
                         onClickCallBack={OnClickReset}
-                        disabled={props.number === props.minNumber || props.error || props.status}/>
+                        disabled={props.currentValue === props.minValue || props.error || props.status}/>
             </div>
         </div>
     );

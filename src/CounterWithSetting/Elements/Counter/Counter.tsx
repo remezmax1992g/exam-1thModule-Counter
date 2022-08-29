@@ -1,37 +1,48 @@
-import Button from "../../../components/Button";
+import React from "react"
 import '../../../App.css';
 import styles from"./Counter.module.css"
-import {CounterType} from "./CounterContainer";
+import UniversalButton from "../../../components/UniversalButton";
 
+type CounterPropsType = {
+    //value
+    currentValue: number
+    maxStartedValue: number
+    minStartedValue: number
+    error: boolean
+    status: boolean
+    //function
+    onClickIncCallback: () => void
+    onClickResetCallback: () => void
+}
 
-const Counter = (props: CounterType) => {
+const Counter = (props: CounterPropsType) => {
     //data
     let textAlarm = "enter values and press 'set'"
     //function
     const OnClickInc = () => {
-        props.onClickInc()
+        props.onClickIncCallback()
     }
     const OnClickReset = () => {
-        props.onClickReset()
+        props.onClickResetCallback()
     }
     //interface
     return (
         <span className={"counter-main"}>
             <div className={styles.screenCounter}>
-                {!props.state.error
-                    ? !props.state.status
+                {!props.error
+                    ? !props.status
                         ? <span
-                            className={props.state.currentValue === props.state.maxStartedValue ? styles.counterRed : styles.counterDefault}>{props.state.currentValue}</span>
+                            className={props.currentValue === props.maxStartedValue ? styles.counterRed : styles.counterDefault}>{props.currentValue}</span>
                         : <span className={styles.textAlarm}>{textAlarm}</span>
                     : <span className={styles.errorTextAlarm}>Incorrect value</span>}
             </div>
             <div className={styles.screenCounterButton}>
-                <Button nameButton={"increment"}
+                <UniversalButton nameButton={"increment"}
                         onClickCallBack={OnClickInc}
-                        disabled={props.state.currentValue === props.state.maxStartedValue || props.state.error || props.state.status}/>
-                <Button nameButton={"reset"}
+                        disabled={props.currentValue === props.maxStartedValue || props.error || props.status}/>
+                <UniversalButton nameButton={"reset"}
                         onClickCallBack={OnClickReset}
-                        disabled={props.state.currentValue === props.state.minStartedValue || props.state.error ||  props.state.status}/>
+                        disabled={props.currentValue === props.minStartedValue || props.error ||  props.status}/>
             </div>
         </span>
     );

@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {AppCounterStateType} from "./Redux";
+import {
+    changeMaxValue,
+    changeMinValue,
+    incrementValue,
+    resetValue, setValue,
+    StoreForCounterType
+} from "./state/reducers/counter-reducer";
+import CounterWithSettingUpdate from "./CounterWithSettingUpdate/CounterWithSettingUpdate";
 import CounterWithSetting from "./CounterWithSetting/CounterWithSetting";
-import {BrowserRouter} from "react-router-dom";
+import {Button} from "@mui/material";
 
 function App() {
+    const[isMode, setMode] = useState<boolean>(true)
     /*//minLocalStorage
     useEffect(() => {
         let numberAsString = localStorage.getItem("minNumber")
@@ -37,19 +48,47 @@ function App() {
     useEffect(() => {
         localStorage.setItem("number", JSON.stringify(number))
     }, [number])*/
-    //UI
+    //React-Redux
+    const dispatch = useDispatch()
+    const stateCounter = useSelector<AppCounterStateType, StoreForCounterType>(state => state.stateForCounter)
+    //Function
+    const onClickIncHandler = useCallback(() => {
+        dispatch(incrementValue())
+    }, [dispatch])
+    const onClickResetHandler = useCallback(() => {
+        dispatch(resetValue())
+    }, [dispatch])
+    const onChangeMaxNumberHandler = useCallback((maxValue: number) => {
+        dispatch(changeMaxValue(maxValue))
+    }, [dispatch])
+    const onChangeMinNumberHandler = useCallback((minValue: number) => {
+        dispatch(changeMinValue(minValue))
+    }, [dispatch])
+    const onClickSetHandler = useCallback(() => {
+        dispatch(setValue())
+    }, [dispatch])
+    const setModeForCounter = () => {
+        setMode(!isMode)
+    }
     return (
-        <BrowserRouter>
-            <div className="App">
-            <CounterWithSetting/>
-                {/*<CounterWithSettingUpdate store={storeCounter}
-                                          onClickInc={onClickInc}
-                                          onClickReset={onClickReset}
-                                          onChangeMaxCallBack={onChangeMaxNumber}
-                                          onChangeMinCallBack={onChangeMinNumber}
-                                          onClickCallBack={onClickSet}/>*/}
-            </div>
-        </BrowserRouter>
+        <div className="App">
+            <div><Button variant="contained" color="success" onClick={setModeForCounter}>ChangeMode</Button></div>
+            {isMode
+                ? <CounterWithSetting store={stateCounter}
+                                      onClickIncCallback={onClickIncHandler}
+                                      onClickResetCallback={onClickResetHandler}
+                                      onChangeMaxCallBack={onChangeMaxNumberHandler}
+                                      onChangeMinCallBack={onChangeMinNumberHandler}
+                                      onClickSetCallBack={onClickSetHandler}/>
+                : <CounterWithSettingUpdate store={stateCounter}
+                                            onClickIncCallback={onClickIncHandler}
+                                            onClickResetCallback={onClickResetHandler}
+                                            onChangeMaxCallBack={onChangeMaxNumberHandler}
+                                            onChangeMinCallBack={onChangeMinNumberHandler}
+                                            onClickSetCallBack={onClickSetHandler}/>}
+
+
+        </div>
     );
 }
 

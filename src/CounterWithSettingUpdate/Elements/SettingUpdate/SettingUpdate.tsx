@@ -1,13 +1,13 @@
 import React from 'react';
 import Input from "../../../components/Input";
-import Button from "../../../components/Button";
 import {NavLink} from "react-router-dom";
 import styles from"./SettingUpdate.module.css"
+import UniversalButton from "../../../components/UniversalButton";
 
 
-type SettingType = {
-    maxNumber: number
-    minNumber: number
+type SettingUpdateType = {
+    maxValue: number
+    minValue: number
     error: boolean
     status: boolean
     onChangeMaxCallBack: (setPoint: number) => void
@@ -15,25 +15,25 @@ type SettingType = {
     onClickCallBack: () => void
 }
 
-const SettingUpdate = (props: SettingType) => {
+const SettingUpdate = (props: SettingUpdateType) => {
     return (
         <div>
             <div className={styles.screenSettingUpdate}>
                 <div className={styles.screenInput}>
                     <span>Max value:</span>
                     <Input onChangeCallBack={props.onChangeMaxCallBack}
-                           startValue={props.maxNumber}
+                           startValue={props.maxValue}
                            error={props.error}/>
                 </div>
                 <div className={styles.screenInput}>
                     <span>Start Value:</span>
                     <Input onChangeCallBack={props.onChangeMinCallBack}
-                           startValue={props.minNumber}
+                           startValue={props.minValue}
                            error={props.error}/>
                 </div>
             </div>
             <div className={styles.screenSettingButton}>
-                <NavLink to={"/Counter"}><Button nameButton={"set"}
+                <NavLink to={"/Counter"}><UniversalButton nameButton={"set"}
                            onClickCallBack={props.onClickCallBack}
                            disabled={props.error || !props.status}/></NavLink>
             </div>
