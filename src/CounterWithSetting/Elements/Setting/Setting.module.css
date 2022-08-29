@@ -1,25 +1,29 @@
 .screenSetting {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     border-radius: 8px;
-    width: 290px;
-    height: 150px;
+    width: 60vh;
+    height: 30vh;
     background-color: darkslategrey;
     border: aqua solid 8px;
-    margin: 20px auto;
     font-weight: bold;
+    margin: 10px;
 }
 .screenInput{
     color:aqua;
     font-size: 25px;
 }
 .screenSettingButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: aqua 8px solid;
     border-radius: 10px;
-    padding: 10px;
-    width: 270px;
+    width: 60vh;
+    height: 10vh;
     background-color: darkslategrey;
-    margin: 15px auto;
+    margin: 10px;
 }

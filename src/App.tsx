@@ -72,7 +72,7 @@ function App() {
     }
     return (
         <div className="App">
-            <div><Button variant="contained" color="success" onClick={setModeForCounter}>ChangeMode</Button></div>
+            <div className="change-mode"><Button variant="contained" color="success" onClick={setModeForCounter}>ChangeMode</Button></div>
             {isMode
                 ? <CounterWithSetting store={stateCounter}
                                       onClickIncCallback={onClickIncHandler}
