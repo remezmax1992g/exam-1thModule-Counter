@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./CounterWithSetting.module.css"
-import {StoreForCounterType} from "../state/reducers/counter-reducer";
+import {StoreForCounterType} from "../redux/reducer/counter-reducer";
 import Counter from "./Elements/Counter/Counter";
 import Setting from "./Elements/Setting/Setting";
 

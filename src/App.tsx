@@ -1,56 +1,27 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './App.css';
-import {useDispatch, useSelector} from "react-redux";
-import {AppCounterStateType} from "./Redux";
 import {
     changeMaxValue,
-    changeMinValue,
+    changeMinValue, getValuesFromLocalStorageTC,
     incrementValue,
-    resetValue, setValue,
-    StoreForCounterType
-} from "./state/reducers/counter-reducer";
+    resetValue, setValue, setValuesToLocalStorageTC,
+} from "./redux/reducer/counter-reducer";
 import CounterWithSettingUpdate from "./CounterWithSettingUpdate/CounterWithSettingUpdate";
 import CounterWithSetting from "./CounterWithSetting/CounterWithSetting";
 import {Button} from "@mui/material";
+import {useAppDispatch, useAppSelector} from "./redux/hook/hook";
 
 function App() {
     const[isMode, setMode] = useState<boolean>(true)
-    /*//minLocalStorage
-    useEffect(() => {
-        let numberAsString = localStorage.getItem("minNumber")
-        if (numberAsString) {
-            let newMinNumber = JSON.parse(numberAsString)
-            setMinNumber(newMinNumber)
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem("minNumber", JSON.stringify(minNumber))
-    }, [minNumber])
-    //maxLocalStorage
-    useEffect(() => {
-        let numberAsString = localStorage.getItem("maxNumber")
-        if (numberAsString) {
-            let newMaxNumber = JSON.parse(numberAsString)
-            setMaxNumber(newMaxNumber)
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem("maxNumber", JSON.stringify(maxNumber))
-    }, [maxNumber])
-    //numberLocalStorage
-    useEffect(() => {
-        let numberAsString = localStorage.getItem("number")
-        if (numberAsString) {
-            let newNumber = JSON.parse(numberAsString)
-            setNumber(newNumber)
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem("number", JSON.stringify(number))
-    }, [number])*/
     //React-Redux
-    const dispatch = useDispatch()
-    const stateCounter = useSelector<AppCounterStateType, StoreForCounterType>(state => state.stateForCounter)
+    const dispatch = useAppDispatch()
+    const stateCounter = useAppSelector(state => state.stateForCounter)
+    useEffect(() => {
+        dispatch(getValuesFromLocalStorageTC())
+    },[])
+    useEffect(() => {
+        dispatch(setValuesToLocalStorageTC())
+    }, [stateCounter.currentValue, stateCounter.minStartedValue, stateCounter.maxStartedValue])
     //Function
     const onClickIncHandler = useCallback(() => {
         dispatch(incrementValue())

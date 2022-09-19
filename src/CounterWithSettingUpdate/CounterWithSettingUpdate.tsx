@@ -3,7 +3,7 @@ import SettingUpdate from "./Elements/SettingUpdate/SettingUpdate";
 import CounterUpdate from "./Elements/CounterUpdate/CounterUpdate";
 import {Navigate, Route, Routes} from "react-router-dom";
 import styles from "./CounterWithSettingUpdate.module.css"
-import {StoreForCounterType} from "../state/reducers/counter-reducer";
+import {StoreForCounterType} from "../redux/reducer/counter-reducer";
 
 
 type CounterWithSettingUpdateType = {
