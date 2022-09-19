@@ -1,10 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback,useState} from 'react';
 import './App.css';
 import {
     changeMaxValue,
-    changeMinValue, getValuesFromLocalStorageTC,
+    changeMinValue,
     incrementValue,
-    resetValue, setValue, setValuesToLocalStorageTC,
+    resetValue, setValue,
 } from "./redux/reducer/counter-reducer";
 import CounterWithSettingUpdate from "./CounterWithSettingUpdate/CounterWithSettingUpdate";
 import CounterWithSetting from "./CounterWithSetting/CounterWithSetting";
@@ -16,12 +16,12 @@ function App() {
     //React-Redux
     const dispatch = useAppDispatch()
     const stateCounter = useAppSelector(state => state.stateForCounter)
-    useEffect(() => {
+   /* useEffect(() => {
         dispatch(getValuesFromLocalStorageTC())
     },[])
     useEffect(() => {
         dispatch(setValuesToLocalStorageTC())
-    }, [stateCounter.currentValue, stateCounter.minStartedValue, stateCounter.maxStartedValue])
+    }, [stateCounter.currentValue, stateCounter.minStartedValue, stateCounter.maxStartedValue])*/
     //Function
     const onClickIncHandler = useCallback(() => {
         dispatch(incrementValue())

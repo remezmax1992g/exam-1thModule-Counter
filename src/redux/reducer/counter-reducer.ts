@@ -1,7 +1,4 @@
 //Constants
-import {AppCounterStateType, AppThunk} from "../redux";
-import {Dispatch} from "redux";
-
 const INCREMENT_VALUE = "INCREMENT-VALUE"
 const RESET_VALUE = "RESET-VALUE"
 const SET_VALUE = "SET-VALUE"
@@ -110,6 +107,7 @@ export const setValuesFromLocalStorage = (currentValue: number, maxValue: number
     }
 }
 //thunks
+/*
 export const setValuesToLocalStorageTC = (): AppThunk => (dispatch: Dispatch, getState: () => AppCounterStateType) => {
     const currentValueLC = getState().stateForCounter.currentValue
     const maxValueLC = getState().stateForCounter.maxStartedValue
@@ -129,4 +127,4 @@ export const getValuesFromLocalStorageTC = (): AppThunk => (dispatch: Dispatch) 
         dispatch(setValuesFromLocalStorage(newCurrentValue, newMaxValue, newMinValue))
     }
 
-}
+}*/
